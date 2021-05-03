@@ -14,7 +14,7 @@ end
 
 if target_month == 0
    target_month = today.month
-end
+endhj
 
 targetday = Date.new(target_year, target_month,1)
 targetday_wday = Date.new(target_year, target_month,1).wday
@@ -27,12 +27,12 @@ puts weekdays.join(" ")
 print "   " * targetday_wday
 
 (1..targetday_lastday).each do |date|
-print date.to_s.rjust(2) + " "
+  print date.to_s.rjust(2) + " "
 
-targetday_wday = targetday_wday + 1
-if targetday_wday%7 == 0
-   print "\n"
-end
+  targetday_wday = targetday_wday + 1
+  if targetday_wday%7 == 0
+     print "\n"
+  end
 end
 
 if targetday_wday%7!=0
