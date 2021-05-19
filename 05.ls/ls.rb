@@ -4,6 +4,36 @@
 require 'optparse'
 require 'etc'
 
+FILE_TYPE =
+  { 'file' => '-', 'directory' => 'd', 'link' => 'l' }.freeze
+
+PERMISSION =
+  { '0' => '---', '1' => '--x', '2' => '-w-', '3' => '-wx', '4' => 'r--', '5' => 'r-x', '6' => 'rw-', '7' => 'rwx' }.freeze
+
+MALTIPLE = 3
+
+# permissionのアルファベット列を出力する処理
+def mode_permission(mode_input)
+  permission_info = []
+  mode_input.each do |mode|
+    permission_info << PERMISSION[mode]
+  end
+  permission_info.join
+end
+
+# 3列にする処理
+def adjust_maltiple(array)
+  array << nil until (array.size % MALTIPLE).zero?
+  sliced_array = array.each_slice(array.size / MALTIPLE).to_a
+  transposed_array = sliced_array.transpose
+  transposed_array.each do |names|
+    names.each do |name|
+      print name.to_s.ljust(30)
+    end
+    print "\n"
+  end
+end
+
 options = ARGV.getopts('a', 'l', 'r')
 
 # arrayを各パターンに応じて確定させる
@@ -26,24 +56,7 @@ else
   end
 end
 
-# permissionのアルファベット列を出力する処理
-def mode_permission(mode_input)
-  permission_info = []
-  mode_input.each do |mode|
-    permission_info << permission(mode)
-  end
-  permission_info = permission_info.join
-end
-
 if options['l']
-
-  def file_type(type)
-    { 'file' => '-', 'directory' => 'd', 'link' => 'l' }[type]
-  end
-
-  def permission(number)
-    { '0' => '---', '1' => '--x', '2' => '-w-', '3' => '-wx', '4' => 'r--', '5' => 'r-x', '6' => 'rw-', '7' => 'rwx' }[number]
-  end
 
   total = array.sum { |arr| File.stat(arr).blocks }
   puts "total #{total}"
@@ -54,22 +67,8 @@ if options['l']
     owner = data.nlink.to_s.rjust(4)
     file_size = data.size.to_s.rjust(5)
     last_updated = data.mtime.strftime('%m %d %R')
-    print "#{file_type(data.ftype)}#{mode} #{owner} #{Etc.getpwuid(data.uid).name}  #{Etc.getgrgid(data.gid).name}  #{file_size} #{last_updated} #{d}\n"
+    print "#{FILE_TYPE[data.ftype]}#{mode} #{owner} #{Etc.getpwuid(data.uid).name}  #{Etc.getgrgid(data.gid).name}  #{file_size} #{last_updated} #{d}\n"
   end
 end
 
-# 3列にする処理
-maltiple = 3
-def adjust_maltiple(array, maltiple)
-  array << nil until (array.size % maltiple).zero?
-  sliced_array = array.each_slice(array.size / maltiple).to_a
-  transposed_array = sliced_array.transpose
-  transposed_array.each do |names|
-    names.each do |name|
-      print name.to_s.ljust(30)
-    end
-    print "\n"
-  end
-end
-
-adjust_maltiple(array, maltiple) unless options['l']
+adjust_maltiple(array) unless options['l']
