@@ -35,11 +35,11 @@ end
 options = ARGV.getopts('a', 'l', 'r')
 
 # arrayを各パターンに応じて確定させる
-if options['a']
-  array = Dir.glob('*', File::FNM_DOTMATCH).sort
-else
-  array = Dir.glob('*').sort
-end
+array = if options['a']
+          Dir.glob('*', File::FNM_DOTMATCH).sort
+        else
+          Dir.glob('*').sort
+        end
 
 array = array.reverse if options['r']
 
@@ -54,6 +54,6 @@ if options['l']
     last_updated = data.mtime.strftime('%m %d %R')
     print "#{FILE_TYPE[data.ftype]}#{mode} #{owner} #{Etc.getpwuid(data.uid).name}  #{Etc.getgrgid(data.gid).name}  #{file_size} #{last_updated} #{filename}\n"
   end
-else 
+else
   adjust_column(array)
 end
