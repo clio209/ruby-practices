@@ -35,29 +35,15 @@ end
 options = ARGV.getopts('a', 'l', 'r')
 
 # arrayを各パターンに応じて確定させる
-array = []
-if options['a'] && options['r']
-  Dir.glob('*', File::FNM_DOTMATCH).sort.reverse_each do |item|
-    array << item
-  end
-elsif options['a']
-  Dir.glob('*', File::FNM_DOTMATCH).sort.each do |item|
-    array << item
-  end
-elsif options['r']
-  Dir.glob('*').sort.reverse_each do |item|
-    array << item
-  end
-else
-  Dir.glob('*').sort.each do |item|
-    array << item
-  end
-end
+array = Dir.glob('*').sort
+
+array = Dir.glob('*', File::FNM_DOTMATCH).sort if options['a']
+
+array = array.reverse if options['r']
 
 if options['l']
   total = array.sum { |arr| File.stat(arr).blocks }
   puts "total #{total}"
-
   array.each do |filename|
     data = File.stat(filename)
     mode = mode_permission(data.mode.to_s(8).slice(/\d{3}$/).split(//))
