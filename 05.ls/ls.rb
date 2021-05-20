@@ -55,7 +55,6 @@ else
 end
 
 if options['l']
-
   total = array.sum { |arr| File.stat(arr).blocks }
   puts "total #{total}"
 
@@ -67,6 +66,6 @@ if options['l']
     last_updated = data.mtime.strftime('%m %d %R')
     print "#{FILE_TYPE[data.ftype]}#{mode} #{owner} #{Etc.getpwuid(data.uid).name}  #{Etc.getgrgid(data.gid).name}  #{file_size} #{last_updated} #{d}\n"
   end
+else adjust_column(array)
 end
 
-adjust_column(array) unless options['l']
