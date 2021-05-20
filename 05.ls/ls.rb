@@ -4,11 +4,9 @@
 require 'optparse'
 require 'etc'
 
-FILE_TYPE =
-  { 'file' => '-', 'directory' => 'd', 'link' => 'l' }.freeze
+FILE_TYPE = { 'file' => '-', 'directory' => 'd', 'link' => 'l' }.freeze
 
-PERMISSION =
-  { '0' => '---', '1' => '--x', '2' => '-w-', '3' => '-wx', '4' => 'r--', '5' => 'r-x', '6' => 'rw-', '7' => 'rwx' }.freeze
+PERMISSION = { '0' => '---', '1' => '--x', '2' => '-w-', '3' => '-wx', '4' => 'r--', '5' => 'r-x', '6' => 'rw-', '7' => 'rwx' }.freeze
 
 MALTIPLE = 3
 
