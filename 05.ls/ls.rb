@@ -35,9 +35,11 @@ end
 options = ARGV.getopts('a', 'l', 'r')
 
 # arrayを各パターンに応じて確定させる
-array = Dir.glob('*').sort
-
-array = Dir.glob('*', File::FNM_DOTMATCH).sort if options['a']
+if options['a']
+  array = Dir.glob('*', File::FNM_DOTMATCH).sort
+else
+  array = Dir.glob('*').sort
+end
 
 array = array.reverse if options['r']
 
