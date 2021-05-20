@@ -54,5 +54,6 @@ if options['l']
     last_updated = data.mtime.strftime('%m %d %R')
     print "#{FILE_TYPE[data.ftype]}#{mode} #{owner} #{Etc.getpwuid(data.uid).name}  #{Etc.getgrgid(data.gid).name}  #{file_size} #{last_updated} #{filename}\n"
   end
-else adjust_column(array)
+else 
+  adjust_column(array)
 end
