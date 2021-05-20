@@ -8,7 +8,7 @@ FILE_TYPE = { 'file' => '-', 'directory' => 'd', 'link' => 'l' }.freeze
 
 PERMISSION = { '0' => '---', '1' => '--x', '2' => '-w-', '3' => '-wx', '4' => 'r--', '5' => 'r-x', '6' => 'rw-', '7' => 'rwx' }.freeze
 
-MALTIPLE = 3
+COLUMN = 3
 
 # permissionのアルファベット列を出力する処理
 def mode_permission(mode_input)
@@ -20,9 +20,9 @@ def mode_permission(mode_input)
 end
 
 # 3列にする処理
-def adjust_maltiple(array)
-  array << nil until (array.size % MALTIPLE).zero?
-  sliced_array = array.each_slice(array.size / MALTIPLE).to_a
+def adjust_column(array)
+  array << nil until (array.size % COLUMN).zero?
+  sliced_array = array.each_slice(array.size / COLUMN).to_a
   transposed_array = sliced_array.transpose
   transposed_array.each do |names|
     names.each do |name|
@@ -69,4 +69,4 @@ if options['l']
   end
 end
 
-adjust_maltiple(array) unless options['l']
+adjust_column(array) unless options['l']
