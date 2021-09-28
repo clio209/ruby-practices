@@ -18,5 +18,4 @@ class Frame
   def second
     @second_shot.score
   end
-
 end

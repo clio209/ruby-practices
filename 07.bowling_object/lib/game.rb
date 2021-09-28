@@ -21,7 +21,6 @@ class Game
       end
     end
     @devided_scores << scores
-
   end
 
   def make_frame
