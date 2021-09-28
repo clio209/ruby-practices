@@ -3,50 +3,51 @@
 require_relative './frame'
 require_relative './shot'
 
-class Game < Frame
+class Game
   def initialize(score)
     @score = score
   end
 
   def devide_score(score)
     scores = score.split(',')
-    @frames = []
+    @devided_scores = []
     9.times do
       first = scores.shift
       if first == 'X'
-        @frames << ['X']
+        @devided_scores << ['X']
       else
         second = scores.shift
-        @frames << [first, second]
+        @devided_scores << [first, second]
       end
     end
-    @frames << scores
+    @devided_scores << scores
+
   end
 
   def make_frame
     devide_score(@score)
-    @scores_array = []
-    @frames.each do |data|
+    @frames = []
+    @devided_scores.each do |data|
       frame = Frame.new(data[0], data[1], data[2])
-      @scores_array << frame.score_frame
+      @frames << frame
     end
   end
 
   def calculate_point
     make_frame
-    @scores_array.each_with_index.sum(0) do |f, i|
-      if f[0] == 10 && i <= 7
-        if @scores_array[i.next][0] == 10
-          10 + @scores_array[i.next][0] + @scores_array[i.next.next][0]
+    @frames.each_with_index.sum(0) do |frame, i|
+      if frame.first == 10 && i <= 7
+        if @frames[i.next].first == 10
+          10 + @frames[i.next].first + @frames[i.next.next].first
         else
-          10 + @scores_array[i.next][0] + @scores_array[i.next][1]
+          10 + @frames[i.next].first + @frames[i.next].second
         end
-      elsif f[0] == 10 && i <= 8
-        10 + @scores_array[i.next][0] + @scores_array[i.next][1]
-      elsif f.sum == 10 && i <= 8
-        10 + @scores_array[i.next][0]
+      elsif frame.first == 10 && i <= 8
+        10 + @frames[i.next].first + @frames[i.next].second
+      elsif frame.frame_score == 10 && i <= 8
+        10 + @frames[i.next].first
       else
-        f.sum
+        frame.frame_score
       end
     end
   end
