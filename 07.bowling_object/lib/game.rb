@@ -4,53 +4,47 @@ require_relative './frame'
 require_relative './shot'
 
 class Game
+  attr_reader :frames
+
   def initialize(score)
-    @score = score
+    # @score = score
+    @frames = make_scores(score)
   end
 
-  def devide_score(score)
+  def make_scores(score)
     scores = score.split(',')
-    @devided_scores = []
+    frames = []
     9.times do
       first = scores.shift
       if first == 'X'
-        @devided_scores << ['X']
+        frames << Frame.new('X')
       else
         second = scores.shift
-        @devided_scores << [first, second]
+        frames << Frame.new(first, second)
       end
     end
-    @devided_scores << scores
-  end
-
-  def make_frame
-    devide_score(@score)
-    @frames = []
-    @devided_scores.each do |data|
-      frame = Frame.new(data[0], data[1], data[2])
-      @frames << frame
-    end
+    frames << Frame.new(scores[0], scores[1], scores[2])
   end
 
   def calculate_point
-    make_frame
     @frames.each_with_index.sum(0) do |frame, i|
-      if frame.first == 10 && i <= 7
-        if @frames[i.next].first == 10
-          10 + @frames[i.next].first + @frames[i.next.next].first
+      if frame.strike? && i <= 7
+        if @frames[i.next].strike?
+          10 + @frames[i.next].first_score + @frames[i.next.next].first_score
         else
-          10 + @frames[i.next].first + @frames[i.next].second
+          10 + @frames[i.next].first_score + @frames[i.next].second_score
         end
-      elsif frame.first == 10 && i <= 8
-        10 + @frames[i.next].first + @frames[i.next].second
-      elsif frame.frame_score == 10 && i <= 8
-        10 + @frames[i.next].first
+      elsif frame.strike? && i <= 8
+        10 + @frames[i.next].first_score + @frames[i.next].second_score
+      elsif frame.spare? && i <= 8
+        10 + @frames[i.next].first_score
       else
-        frame.frame_score
+        frame.score
       end
     end
   end
-end
 
-game1 = Game.new(ARGV[0])
-puts game1.calculate_point
+  def point
+    @point ||= calculate_point
+  end
+end
