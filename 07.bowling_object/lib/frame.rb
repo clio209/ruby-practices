@@ -24,6 +24,6 @@ class Frame
   end
 
   def spare?
-    @first_shot.score + @second_shot.score == 10
+    @first_shot.score != 10 && @first_shot.score + @second_shot.score == 10
   end
 end
