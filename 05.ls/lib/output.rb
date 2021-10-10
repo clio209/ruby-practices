@@ -44,7 +44,7 @@ class Output
       owner = data.nlink.to_s.rjust(4)
       file_size = data.size.to_s.rjust(5)
       last_updated = data.mtime.strftime('%m %d %R')
-      print "#{FILE_TYPE[data.ftype]}#{mode}#{owner}#{Etc.getpwuid(data.uid).name}#{Etc.getgrgid(data.gid).name}#{file_size}#{last_updated}#{filename}\n"
+      print "#{FILE_TYPE[data.ftype]}#{mode} #{owner}  #{Etc.getpwuid(data.uid).name} #{Etc.getgrgid(data.gid).name} #{file_size} #{last_updated} #{filename}\n"
     end
   end
 
