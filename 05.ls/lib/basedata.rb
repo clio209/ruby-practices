@@ -5,7 +5,7 @@ require 'etc'
 require_relative './command'
 
 class BaseData
-  attr_reader :command, :command_a, :command_l, :command_r
+  attr_reader :command
 
   def initialize
     @command = Command.make_command
