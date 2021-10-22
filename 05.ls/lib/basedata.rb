@@ -12,12 +12,12 @@ class BaseData
   end
 
   def make_data
-    @base_data = if @command.command_a
+    @base_data = if @command.command_a?
                    Dir.glob('*', File::FNM_DOTMATCH).sort
                  else
                    Dir.glob('*').sort
                  end
-    @base_data = @base_data.reverse if @command.command_r
+    @base_data = @base_data.reverse if @command.command_r?
     @base_data
   end
 end
