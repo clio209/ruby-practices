@@ -28,5 +28,4 @@ class Command
   def command_l?
     @command_l
   end
-
 end

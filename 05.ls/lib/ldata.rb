@@ -1,13 +1,10 @@
+# frozen_string_literal: true
+
 require_relative './basedata'
-require_relative './command'
 
 class Ldata
-  attr_reader :base_data , :command
-
-  def initialize
-    basedata = BaseData.new
-    @base_data = basedata.make_data
-    @command = basedata.command
+  def initialize(base_data)
+    @base_data = base_data
   end
 
   FILE_TYPE = { 'file' => '-', 'directory' => 'd', 'link' => 'l' }.freeze
@@ -22,10 +19,8 @@ class Ldata
     permission_info.join
   end
 
-  def data_l
+  def make_data_l
     @l_data = []
-    total = @base_data.sum { |arr| File.stat(arr).blocks }
-    puts "total #{total}"
     @base_data.each do |filename|
       data = File.stat(filename)
       mode = mode_permission(data.mode.to_s(8).slice(/\d{3}$/).split(//))
@@ -34,11 +29,6 @@ class Ldata
       last_updated = data.mtime.strftime('%m %d %R')
       @l_data << "#{FILE_TYPE[data.ftype]}#{mode} #{owner}  #{Etc.getpwuid(data.uid).name} #{Etc.getgrgid(data.gid).name} #{file_size} #{last_updated} #{filename}\n"
     end
-    p @base_data
     @l_data
   end
-
 end
-
-# ldata1 = Ldata.new
-# ldata1.data_l
