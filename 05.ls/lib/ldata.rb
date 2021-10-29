@@ -12,11 +12,12 @@ class Ldata
                  '7' => 'rwx' }.freeze
 
   def mode_permission(mode_input)
-    permission_info = []
-    mode_input.each do |mode|
-      permission_info << PERMISSION[mode]
-    end
-    permission_info.join
+    mode_input.map {|mode| PERMISSION[mode] }.join
+    # permission_info = []
+    # mode_input.each do |mode|
+    #   permission_info << PERMISSION[mode]
+    # end
+    # permission_info.join
   end
 
   def make_data_l
