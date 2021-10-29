@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require_relative './basedata'
+require_relative './filename'
 
 class Ldata
   def initialize(base_data)
-    @base_data = base_data
+    @array_filename = base_data
   end
 
   FILE_TYPE = { 'file' => '-', 'directory' => 'd', 'link' => 'l' }.freeze
@@ -21,7 +21,7 @@ class Ldata
 
   def make_data_l
     @l_data = []
-    @base_data.each do |filename|
+    @array_filename.each do |filename|
       data = File.stat(filename)
       mode = mode_permission(data.mode.to_s(8).slice(/\d{3}$/).split(//))
       owner = data.nlink.to_s.rjust(4)

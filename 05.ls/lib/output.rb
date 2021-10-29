@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative './basedata'
+require_relative './filename'
 require_relative './command'
 require_relative './ldata'
 
@@ -11,14 +11,14 @@ class Output
                  '7' => 'rwx' }.freeze
 
   def initialize
-    basedata = BaseData.new
-    @base_data = basedata.make_data
-    @command = basedata.command
+    @filename = FileName.new
+    @array_filename = @filename.make_array
+    @command = @filename.command
   end
 
   def output_normal
-    @base_data << nil until (@base_data.size % COLUMN).zero?
-    sliced_array = @base_data.each_slice(@base_data.size / COLUMN).to_a
+    @array_filename << nil until (@array_filename.size % COLUMN).zero?
+    sliced_array = @array_filename.each_slice(@array_filename.size / COLUMN).to_a
     transposed_array = sliced_array.transpose
     transposed_array.each do |names|
       names.each do |name|
@@ -29,11 +29,9 @@ class Output
   end
 
   def output_l
-    ldata = Ldata.new(@base_data)
-    @l_data = ldata.make_data_l
-    total = @base_data.sum { |arr| File.stat(arr).blocks }
-    puts "total #{total}"
-    @l_data.each { |data| puts data }
+    @filename.make_total
+    ldata = Ldata.new(@array_filename)
+    ldata.make_data_l.each { |data| puts data }
   end
 
   def output
