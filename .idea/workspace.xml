@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dee496da-15aa-4faf-beb8-9b8883bd656b" name="変更" comment="Basedataクラスのattr_reader 修正" />
+    <list default="true" id="dee496da-15aa-4faf-beb8-9b8883bd656b" name="変更" comment="不要行の削除">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/05.ls/lib/basedata.rb" beforeDir="false" afterPath="$PROJECT_DIR$/05.ls/lib/filename.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/05.ls/lib/ldata.rb" beforeDir="false" afterPath="$PROJECT_DIR$/05.ls/lib/ldata.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/05.ls/lib/ls.rb" beforeDir="false" afterPath="$PROJECT_DIR$/05.ls/lib/ls.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/05.ls/lib/output.rb" beforeDir="false" afterPath="$PROJECT_DIR$/05.ls/lib/output.rb" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -211,6 +217,14 @@
       <workItem from="1633351671935" duration="4598000" />
       <workItem from="1633695422762" duration="14492000" />
       <workItem from="1634546340705" duration="821000" />
+      <workItem from="1634547166946" duration="8311000" />
+      <workItem from="1634815642438" duration="3504000" />
+      <workItem from="1634888304783" duration="5738000" />
+      <workItem from="1634986884599" duration="3369000" />
+      <workItem from="1635233728279" duration="1231000" />
+      <workItem from="1635409574270" duration="1972000" />
+      <workItem from="1635420787239" duration="3227000" />
+      <workItem from="1635506017646" duration="600000" />
     </task>
     <task id="LOCAL-00001" summary="rubocop 修正">
       <created>1632142099859</created>
@@ -289,7 +303,21 @@
       <option name="project" value="LOCAL" />
       <updated>1634546665290</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="option[l]の出力要素をLdataクラスを作ってそちらに移管">
+      <created>1634892795924</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1634892795924</updated>
+    </task>
+    <task id="LOCAL-00013" summary="不要行の削除">
+      <created>1634989863650</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1634989863650</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -318,11 +346,27 @@
     <MESSAGE value="rubocop修正" />
     <MESSAGE value="lオプションの時の出力のスペースを変更" />
     <MESSAGE value="Basedataクラスのattr_reader 修正" />
-    <option name="LAST_COMMIT_MESSAGE" value="Basedataクラスのattr_reader 修正" />
+    <MESSAGE value="option[l]の出力要素をLdataクラスを作ってそちらに移管" />
+    <MESSAGE value="不要行の削除" />
+    <option name="LAST_COMMIT_MESSAGE" value="不要行の削除" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="ruby-line">
+          <url>file://$PROJECT_DIR$/05.ls/lib/command.rb</url>
+          <line>16</line>
+          <properties myBlockOrdinal="-1">
+            <option name="block-ordinal" value="-1" />
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/ruby_practices@IRB__ruby_practices.rcov" NAME="IRB: ruby-practices のカバレッジ結果" MODIFIED="1633166597423" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="ruby-practices" />
-    <SUITE FILE_PATH="coverage/ruby_practices@game.rcov" NAME="game のカバレッジ結果" MODIFIED="1633167344712" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/07.bowling_object/lib" MODULE_NAME="ruby-practices" />
+    <SUITE FILE_PATH="coverage/ruby_practices@game.rcov" NAME="game のカバレッジ結果" MODIFIED="1634556309205" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/07.bowling_object/lib" />
     <SUITE FILE_PATH="coverage/ruby_practices@test_bowling.rcov" NAME="test_bowling のカバレッジ結果" MODIFIED="1633156416121" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="ruby-practices" />
     <SUITE FILE_PATH="coverage/ruby_practices@bowling_test_rb.rcov" NAME="bowling_test.rb のカバレッジ結果" MODIFIED="1633163808128" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="ruby-practices" />
     <SUITE FILE_PATH="coverage/ruby_practices@.rcov" NAME=" のカバレッジ結果" MODIFIED="1633165680093" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" MODULE_NAME="ruby-practices" />
