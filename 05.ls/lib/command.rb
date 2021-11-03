@@ -9,7 +9,6 @@ class Command
     @command_a = command[:command_a]
     @command_l = command[:command_l]
     @command_r = command[:command_r]
-    # @command = command
   end
 
   def self.make_command

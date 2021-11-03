@@ -13,16 +13,15 @@ class FileName
 
   def make_array
     @array_filename = if @command.command_a?
-                   Dir.glob('*', File::FNM_DOTMATCH).sort
-                 else
-                   Dir.glob('*').sort
-                 end
+                        Dir.glob('*', File::FNM_DOTMATCH).sort
+                      else
+                        Dir.glob('*').sort
+                      end
     @array_filename = @array_filename.reverse if @command.command_r?
     @array_filename
   end
 
-  def make_total
-    total = @array_filename.sum { |arr| File.stat(arr).blocks }
-    puts "total #{total}"
+  def make_lsfile
+    @array_filename.map {|filename| LsFile.new(filename)}
   end
 end

@@ -11,14 +11,15 @@ class Output
                  '7' => 'rwx' }.freeze
 
   def initialize
-    @filename = FileName.new
-    @array_filename = @filename.make_array
-    @command = @filename.command
+    filename = FileName.new
+    @array_filenames = filename.make_array
+    @ls_files = filename.make_lsfile
+    @command = filename.command
   end
 
   def output_normal
-    @array_filename << nil until (@array_filename.size % COLUMN).zero?
-    sliced_array = @array_filename.each_slice(@array_filename.size / COLUMN).to_a
+    @array_filenames << nil until (@array_filenames.size % COLUMN).zero?
+    sliced_array = @array_filenames.each_slice(@array_filenames.size / COLUMN).to_a
     transposed_array = sliced_array.transpose
     transposed_array.each do |names|
       names.each do |name|
@@ -28,10 +29,14 @@ class Output
     end
   end
 
+  def output_total
+    total = @array_filenames.sum {|arr| File.stat(arr).blocks }
+    puts "total #{total}"
+  end
+
   def output_l
-    @filename.make_total
-    ldata = Ldata.new(@array_filename)
-    p ldata
+    output_total
+    ldata = Ldata.new(@ls_files)
     ldata.make_data_l.each { |data| puts data }
   end
 
