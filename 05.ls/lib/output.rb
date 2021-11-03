@@ -31,6 +31,7 @@ class Output
   def output_l
     @filename.make_total
     ldata = Ldata.new(@array_filename)
+    p ldata
     ldata.make_data_l.each { |data| puts data }
   end
 
