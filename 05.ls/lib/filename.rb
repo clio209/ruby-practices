@@ -37,7 +37,7 @@ class FileName
     end
   end
 
-  def output_total
+  def total_blocks
     total = @array_filename.sum { |arr| File.stat(arr).blocks }
     puts "total #{total}"
   end

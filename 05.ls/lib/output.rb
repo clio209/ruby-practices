@@ -20,7 +20,7 @@ class Output
   end
 
   def output_l
-    @filename.output_total
+    @filename.total_blocks
     @ls_files = @filename.make_lsfile
     l_list = @ls_files.map(&:l_line)
     l_list.each { |data| puts data }
