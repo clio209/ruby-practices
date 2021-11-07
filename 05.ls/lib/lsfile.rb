@@ -3,7 +3,6 @@
 require_relative './filename'
 
 class LsFile
-
   def initialize(filename)
     @stat = File.stat(filename)
     @filename = filename
@@ -14,7 +13,7 @@ class LsFile
                  '7' => 'rwx' }.freeze
 
   def mode_permission(mode_input)
-    mode_input.map {|mode| PERMISSION[mode] }.join
+    mode_input.map { |mode| PERMISSION[mode] }.join
   end
 
   def mode
@@ -33,9 +32,7 @@ class LsFile
     @stat.mtime.strftime('%m %d %R')
   end
 
-  def filename
-    @filename
-  end
+  attr_reader :filename
 
   def l_line
     "#{FILE_TYPE[@stat.ftype]}#{mode} #{owner.rjust(4)}  #{Etc.getpwuid(@stat.uid).name} #{Etc.getgrgid(@stat.gid).name} #{file_size.rjust(5)} #{last_updated} #{filename}\n"
